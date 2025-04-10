@@ -49,9 +49,14 @@ img {
     position: relative;
 }
 
+form {
+    position: relative;
+}
+
 .searchbar-container .search-span {
     position: absolute;
     left: 10px;
+    top: 15px;
 }
 
 .searchbar-container input {
