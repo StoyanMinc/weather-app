@@ -1,9 +1,11 @@
+import WheatherContainer from "./components/WheaterContainer"
+
 function App() {
 
   return (
-    <>
-  <h1>Hello</h1>
-    </>
+    <div className="app-container">
+      <WheatherContainer />
+    </div>
   )
 }
 
