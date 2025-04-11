@@ -47,10 +47,12 @@ img {
     gap: 15px;
     align-items: center;
     position: relative;
+    margin-bottom: 20px;
 }
 
 form {
     position: relative;
+    width: 100%;
 }
 
 .searchbar-container .search-span {
@@ -67,9 +69,12 @@ form {
     border: 1px solid gray;
     background-color: rgba(0, 9, 109, 0.1);
     color: #fff;
-
+    text-transform: uppercase;
 }
 
+.searchbar-container input::placeholder {
+  text-transform: none;
+}
 .my-location-btn {
     border: 1px solid;
     border-radius: 5px;
@@ -146,10 +151,21 @@ form {
     margin-bottom: 10px;
 }
 
-.forecast-hourly-container p{
+.forecast-hourly-container p {
     font-size: 13px;
 }
 
 .hourly-img {
-    width: 40%;
+    width: 18px;
+}
+
+@media screen and (max-width: 768px) {
+    .wheater-container {
+        width: 100%;
+        height: 100vh;
+    }
+
+    .forecast-container {
+        gap: 18px;
+    }
 }
