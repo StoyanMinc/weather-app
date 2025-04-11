@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import { getCurrentWeather, getDefaultForecast, getDefaulWeather } from "../weather-api";
+import { getCurrentWeather, getDefaultForecast } from "../weather-api";
 
 export function useGetDefaultWeather() {
     const [defaultWeather, setDefaultWeather] = useState({});
 
     useEffect(() => {
         (async () => {
-            const result = await getDefaulWeather();
+            const result = await getDefaultForecast();
             setDefaultWeather(result);
         })()
     }, []);

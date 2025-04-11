@@ -1,12 +1,12 @@
-export default function CurrentWeather() {
-    return( 
+export default function CurrentWeather({weatherInfo}) {
+    return (
         <div className="current-weather-container">
             <div className="img-container">
-            <img className="current-weather-img" src="images/cloudy.svg" alt="whater-image" />
+                <img className="current-weather-img" src={`images/${weatherInfo.weatherIcon}.svg`} alt="whater-image" />
             </div>
             <div className="current-weather-info">
-                <h1>30 <span>°C</span></h1>
-                <p>mist</p>
+                <h1>{weatherInfo.temp} <span>°C</span></h1>
+                <p>{weatherInfo.desciption}</p>
             </div>
         </div>
     )

@@ -3,6 +3,7 @@ import { useGetDefaultForecast } from "../hooks/useWeather";
 import CurrentWeather from "./CurrentWheater";
 import Forecast24Hours from "./Forecats24Hours";
 import Searchbar from "./Searchbar";
+import { getWeatherInfo } from "../utils/getWeatherInfo";
 
 export default function WheatherContainer() {
     const defaultForecast = useGetDefaultForecast();
@@ -12,13 +13,21 @@ export default function WheatherContainer() {
     useEffect(() => {
         setWeatherToDisplay(defaultForecast)
     }, [defaultForecast]);
-    
-    console.log(defaultForecast);
+
+    if (!weatherToDisplay.current) {
+        return (
+            <div>Loading...</div>
+        )
+    }
+    const weatherInfo = getWeatherInfo(weatherToDisplay, 'current');
+
     return (
         <div className="wheater-container">
             <Searchbar setWeather={setWeatherToDisplay} />
-            <CurrentWeather weatherForecast={weatherToDisplay} />
-            <Forecast24Hours weatherForecast={weatherToDisplay} />
+            <CurrentWeather weatherInfo={weatherInfo} />
+            <Forecast24Hours weatherForecast={weatherToDisplay.forecast.forecastday} />
         </div>
     )
+
+
 }
