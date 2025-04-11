@@ -5,6 +5,13 @@ export default function Searchbar({ setWeather }) {
     const { getCurrentWeatherHandler } = useGetCurrentWeather();
     const [searchedCity, setSearchedCity] = useState('Plovdiv');
 
+    const getPosition = () => {
+        navigator.geolocation.getCurrentPosition((position) => {
+           console.log(position);
+        });
+        console.log('clicked');
+    }
+
     const handleSearch = (e) => {
         setSearchedCity(e.target.value);
     }
@@ -21,7 +28,7 @@ export default function Searchbar({ setWeather }) {
                 <span className="material-symbols-rounded search-span">search</span>
                 <input type="search" placeholder="Enter a city name" onChange={handleSearch} defaultValue={'Plovdiv'} />
             </form>
-            <button className="my-location-btn">
+            <button className="my-location-btn" onClick={getPosition} >
                 <span className="material-symbols-rounded">my_location</span>
             </button>
         </div>
