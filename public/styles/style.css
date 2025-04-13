@@ -73,8 +73,9 @@ form {
 }
 
 .searchbar-container input::placeholder {
-  text-transform: none;
+    text-transform: none;
 }
+
 .my-location-btn {
     border: 1px solid;
     border-radius: 5px;
@@ -118,12 +119,9 @@ form {
 
 .forecast-container {
     display: flex;
-    border-top: 1px solid;
-    margin-top: 40px;
+    flex-direction: column;
+    margin-top: 60px;
     width: 100%;
-    gap: 17px;
-    overflow-x: auto;
-    padding-top: 20px;
 }
 
 /* Hide scrollbar by default */
@@ -142,7 +140,16 @@ form {
     background-color: rgba(255, 255, 255, 0.7);
 }
 
-.forecast-hourly-container {
+.hourly-weather-container {
+    display: flex;
+    border-top: 1px solid;
+    width: 100%;
+    gap: 17px;
+    overflow-x: auto;
+    padding-top: 20px;
+}
+
+.each-hour-container {
     width: 20%;
     display: flex;
     flex-direction: column;
@@ -151,7 +158,7 @@ form {
     margin-bottom: 10px;
 }
 
-.forecast-hourly-container p {
+.each-hour-container p {
     font-size: 13px;
 }
 
