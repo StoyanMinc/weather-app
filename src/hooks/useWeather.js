@@ -29,9 +29,9 @@ export function useGetDefaultForecast() {
 
 export function useGetCurrentWeather() {
     const getCurrentWeatherHandler = async (city) => {
+
         const result = await getCurrentWeather(city);
         return result;
     }
-
     return { getCurrentWeatherHandler };
 }

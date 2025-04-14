@@ -1,17 +1,19 @@
 import { useState } from "react"
-import { useGetCurrentWeather } from "../hooks/useWeather";
-import { getCurrentLocationWeather } from "../weather-api";
+// import { useGetCurrentWeather } from "../hooks/useWeather";
+import { getCurrentLocationWeather, getCurrentWeather } from "../weather-api";
+import ErrorPage from "./ErrorPage";
 
 export default function Searchbar({ setWeather }) {
-    const { getCurrentWeatherHandler } = useGetCurrentWeather();
     const [searchedCity, setSearchedCity] = useState('Plovdiv');
+    const [error, setError] = useState(null);
+
+    // const { getCurrentWeatherHandler } = useGetCurrentWeather();
 
     const getPosition = () => {
         navigator.geolocation.getCurrentPosition(async (position) => {
             try {
                 const { latitude, longitude } = position.coords;
                 const currentLocationWeather = await getCurrentLocationWeather(latitude, longitude);
-                console.log(currentLocationWeather);
                 setWeather(currentLocationWeather);
                 setSearchedCity(currentLocationWeather.location.name);
             } catch (error) {
@@ -26,7 +28,6 @@ export default function Searchbar({ setWeather }) {
             //     maximumAge: 300000 
             // }
         );
-        console.log('clicked');
     }
 
     const handleSearch = (e) => {
@@ -35,15 +36,27 @@ export default function Searchbar({ setWeather }) {
 
     const submitHandler = async (e) => {
         e.preventDefault();
-        const currentWeather = await getCurrentWeatherHandler(searchedCity);
-        setWeather(currentWeather)
+        setError(null);
+        try {
+            const response = await getCurrentWeather(searchedCity);
+            setWeather(response)
+        } catch (error) {
+            console.log(error);
+            setError(error)            
+        }
+    }
+
+    if (error !== null) {
+        return (
+            <ErrorPage/>
+        )
     }
 
     return (
         <div className="searchbar-container">
             <form action="#" onSubmit={submitHandler}>
                 <span className="material-symbols-rounded search-span">search</span>
-                <input type="search" placeholder="Enter a city name" onChange={handleSearch} value={searchedCity} />
+                <input type="search" placeholder="Enter a city name" onChange={handleSearch} value={searchedCity} onClick={() => setSearchedCity('')} />
             </form>
             <button className="my-location-btn" onClick={getPosition} >
                 <span className="material-symbols-rounded">my_location</span>

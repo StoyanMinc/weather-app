@@ -8,3 +8,5 @@ export const weatherCodes = {
     thunder_rain: [1273, 1276, 1087, 1279, 1282],
     mist: [1030, 1135, 1147]
 }
+
+export const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];

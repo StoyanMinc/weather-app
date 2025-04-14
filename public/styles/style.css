@@ -24,7 +24,6 @@ img {
 
 .app-container {
     width: 100%;
-    height: 100vh;
     display: flex;
     background-color: lightblue;
     justify-content: center;
@@ -146,6 +145,7 @@ form {
     width: 100%;
     gap: 17px;
     overflow-x: auto;
+    margin-top: 18px;
     padding-top: 20px;
 }
 
@@ -163,16 +163,45 @@ form {
 }
 
 .hourly-img {
-    width: 18px;
+    width: 22px;
+}
+.tendays-forecast-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    width: 100%;
+}
+.tenDays-foracast-holder {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-top: 1px solid #fff;
+    margin-top: 18px;
+    padding-top: 20px;
+   
+}
+
+.daily-weather {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    font-size: 15px;
+    background: rgba(255,255,255,0.1); /* just for visual aid */
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.weekDay {
+    width: 13%;
+}
+
+.daily-weather > :nth-child(-n+3) {
+    flex-grow: 1;
 }
 
 @media screen and (max-width: 768px) {
     .wheater-container {
         width: 100%;
-        height: 100vh;
     }
 
-    .forecast-container {
-        gap: 18px;
-    }
 }
