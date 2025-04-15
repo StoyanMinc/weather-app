@@ -1,13 +1,13 @@
-import { useState } from "react"
-// import { useGetCurrentWeather } from "../hooks/useWeather";
+import { useRef, useState } from "react"
+
 import { getCurrentLocationWeather, getCurrentWeather } from "../weather-api";
-import ErrorPage from "./ErrorPage";
+import ErrorPageModal from "./ErrorPage";
 
 export default function Searchbar({ setWeather }) {
     const [searchedCity, setSearchedCity] = useState('Plovdiv');
     const [error, setError] = useState(null);
-
-    // const { getCurrentWeatherHandler } = useGetCurrentWeather();
+    const inputRef = useRef(null);
+    const lastValidCity = useRef('Plovdiv');
 
     const getPosition = () => {
         navigator.geolocation.getCurrentPosition(async (position) => {
@@ -21,13 +21,7 @@ export default function Searchbar({ setWeather }) {
             }
         }, (error) => {
             console.log(error);
-        },
-            // {
-            //     enableHighAccuracy: false,
-            //     timeout: 60000,        // wait up to 1 minute
-            //     maximumAge: 300000 
-            // }
-        );
+        });
     }
 
     const handleSearch = (e) => {
@@ -39,24 +33,30 @@ export default function Searchbar({ setWeather }) {
         setError(null);
         try {
             const response = await getCurrentWeather(searchedCity);
-            setWeather(response)
+            setWeather(response);
+            lastValidCity.current = searchedCity;
+            inputRef.current.blur();
         } catch (error) {
             console.log(error);
-            setError(error)            
+            setError(error)
         }
+    }
+
+    function clearError() {
+        setError(null);
+        setSearchedCity(lastValidCity.current);
     }
 
     if (error !== null) {
         return (
-            <ErrorPage/>
+            <ErrorPageModal clearError={clearError} error={error} />
         )
     }
-
     return (
         <div className="searchbar-container">
             <form action="#" onSubmit={submitHandler}>
                 <span className="material-symbols-rounded search-span">search</span>
-                <input type="search" placeholder="Enter a city name" onChange={handleSearch} value={searchedCity} onClick={() => setSearchedCity('')} />
+                <input ref={inputRef} type="search" placeholder="Enter a city name" onChange={handleSearch} value={searchedCity} onClick={() => setSearchedCity('')} />
             </form>
             <button className="my-location-btn" onClick={getPosition} >
                 <span className="material-symbols-rounded">my_location</span>

@@ -29,6 +29,4 @@ export default function WheatherContainer() {
             <Forecast10Days weatherForecast={weatherToDisplay.forecast.forecastday}/>
         </div>
     )
-
-
-}
+};
