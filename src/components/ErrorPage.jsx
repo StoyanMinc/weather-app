@@ -1,7 +1,6 @@
 import React from 'react';
 
 export default function ErrorPageModal({clearError, error}) {
-  console.log(error);
   return (
     <div className={error !== null ? 'modal-container show-modal' : 'modal-container'}>
       <div className="modal-content">

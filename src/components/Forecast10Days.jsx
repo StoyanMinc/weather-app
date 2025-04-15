@@ -2,7 +2,6 @@ import { getWeatherInfoFor10Days } from "../utils/getWeatherInfo"
 
 export default function Forecast10Days({ weatherForecast }) {
     const formatedWeather = getWeatherInfoFor10Days(weatherForecast);
-    console.log(formatedWeather);
     return (
         <div className="tendays-forecast-container">
             <p>10 days forecast</p>
