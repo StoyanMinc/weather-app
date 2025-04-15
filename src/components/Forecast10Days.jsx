@@ -12,7 +12,6 @@ export default function Forecast10Days({ weatherForecast }) {
                             ? <span className="weekDay">Today</span>
                             : <span className="weekDay">{day.weekDay}</span>
                         }
-
                         <div className="hourly-img">
                             <img src={`images/${day.weatherIcon}.svg`} alt="" />
                         </div>
