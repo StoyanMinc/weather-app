@@ -190,9 +190,9 @@ form {
     align-items: center;
     font-size: 15px;
     background: rgba(255, 255, 255, 0.1);
-    /* just for visual aid */
     padding: 10px;
     box-sizing: border-box;
+    cursor: pointer;
 }
 
 .weekDay {
@@ -308,6 +308,7 @@ form {
     background-image: url('../assets/close.svg');
     background-position: center;
     background-size: contain;
+    cursor: pointer;
 }
 
 
