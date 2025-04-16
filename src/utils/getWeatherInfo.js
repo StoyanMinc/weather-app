@@ -8,7 +8,7 @@ export function getWeatherInfo(weatherData, type) {
         formatedWeatherData.temp = weatherData.current.temp_c
         formatedWeatherData.desciption = weatherData.current.condition.text;
         formatedWeatherData.weatherIcon = getIcon(weatherCode);
-        formatedWeatherData.hour = weatherData.current.last_updated.split(' ')[1].split(':')[0];
+        formatedWeatherData.hour = getHour(weatherData.current.last_updated);
     } else if (type === 'forecast') {
         const weatherCode = weatherData.condition.code;
         formatedWeatherData.time = weatherData.time.split(' ')[1].split(':')[0]
@@ -21,10 +21,8 @@ export function getWeatherInfo(weatherData, type) {
 }
 
 export function getWeatherInfoFor10Days(weatherData) {
-
     const formatedWeatherData = weatherData.map(dayForecast => {
         const dayIndex = new Date(dayForecast.date).getDay();
-
         const dailyWeather = {};
         dailyWeather.weekDay = weekDays[dayIndex];
         dailyWeather.maxTemp = Math.floor(dayForecast.day.maxtemp_c);
@@ -46,4 +44,8 @@ export function getWeekDay(dateStr) {
 export function getIcon(weatherCode) {
     const weatherIcon = Object.keys(weatherCodes).find(icon => weatherCodes[icon].includes(weatherCode));
     return weatherIcon;
+}
+
+export function getHour(date) {
+    return date.split(' ')[1].split(':')[0];
 }

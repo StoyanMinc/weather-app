@@ -26,7 +26,7 @@ export default function WheatherContainer() {
             <Searchbar setWeather={setWeatherToDisplay} />
             <CurrentWeather weatherInfo={weatherInfo} />
             <Forecast24Hours weatherForecast={weatherToDisplay.forecast.forecastday} />
-            <Forecast10Days weatherForecast={weatherToDisplay.forecast.forecastday}/>
+            <Forecast10Days weatherToDisplay={weatherToDisplay}/>
         </div>
     )
 };
